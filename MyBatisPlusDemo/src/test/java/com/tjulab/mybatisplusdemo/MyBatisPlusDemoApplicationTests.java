@@ -23,9 +23,9 @@ class MyBatisPlusDemoApplicationTests {
     @Test
     void addUser(){
         User user = new User();
-        user.setName("Lilei");
-        user.setAge(30);
-        user.setEmail("Lilei@163.com");
+        user.setName("Shishi");
+        user.setAge(24);
+        user.setEmail("Shishi@163.com");
         int insert = userMapper.insert(user);
         System.out.println("insert: " + insert);
 
@@ -42,6 +42,18 @@ class MyBatisPlusDemoApplicationTests {
 
         int row = userMapper.updateById(user);
         System.out.println(row);
+
+    }
+
+    // 测试乐观锁
+    @Test
+    void testOptimisticLocker(){
+        // 根据id查询数据
+        User user = userMapper.selectById(1533626740629377026L);
+
+        // 修改
+        user.setAge(120);
+        userMapper.updateById(user);
 
     }
 
