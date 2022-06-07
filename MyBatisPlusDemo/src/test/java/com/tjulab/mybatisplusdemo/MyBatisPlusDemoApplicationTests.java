@@ -1,5 +1,6 @@
 package com.tjulab.mybatisplusdemo;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.tjulab.mybatisplusdemo.entity.User;
 import com.tjulab.mybatisplusdemo.mapper.UserMapper;
@@ -122,5 +123,67 @@ class MyBatisPlusDemoApplicationTests {
     }
 
     // 删除操作：逻辑删除
+
+
+    // MyBatisPlus 实现复杂查询操作
+    @Test
+    void testSelectQuery(){
+        // 创建QuerryWrapper对象
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+
+        // 1. ge gt le lt >= > <= <
+
+        // 查询 age >= 30 的记录
+//        wrapper.ge("age", 30);
+//        List<User> users = userMapper.selectList(wrapper);
+//        System.out.println(users);
+
+        // 2. eq ne == != <>
+
+        // 查询 name == "LiLei" 的记录
+//        wrapper.eq("name", "Lilei");
+//        List<User> users = userMapper.selectList(wrapper);
+//        System.out.println(users);
+
+        // 查询 name != "LiLei" 的记录
+//        wrapper.ne("name", "Lilei");
+//        List<User> users = userMapper.selectList(wrapper);
+//        System.out.println(users);
+
+        // 3. between 范围
+
+        // 查询 age 在 20 到 30 之间的记录
+//        wrapper.between("age", 20, 30);
+//        List<User> users = userMapper.selectList(wrapper);
+//        System.out.println(users);
+
+        // 4. like 模糊查询
+
+        // 查询 name 中带 "shi" 的记录
+//        wrapper.like("name", "shi");
+//        List<User> users = userMapper.selectList(wrapper);
+//        System.out.println(users);
+
+        // 5. orderByAsc orderByDesc 排序
+
+        // 将记录按照 id 进行降序排序
+//        wrapper.orderByDesc("id");
+//        List<User> users = userMapper.selectList(wrapper);
+//        System.out.println(users);
+
+        // 6. last 拼接 sql 语句
+
+        // 在 sql 语句后拼上指定的内容
+//        wrapper.last("limit 1");
+//        List<User> users = userMapper.selectList(wrapper);
+//        System.out.println(users);
+
+        // 7. select 查询指定的列
+
+        // 查询所有记录的 id 和 name 属性值
+        wrapper.select("id", "name");
+        List<User> users = userMapper.selectList(wrapper);
+        System.out.println(users);
+    }
 
 }
