@@ -18,7 +18,7 @@ class MyBatisPlusDemoApplicationTests {
 
     // 查询user表中的所有数据
     @Test
-    void contextLoads() {
+    void findAll() {
         List<User> userList = userMapper.selectList(null);
         System.out.println(userList);
     }
@@ -26,9 +26,9 @@ class MyBatisPlusDemoApplicationTests {
     @Test
     void addUser(){
         User user = new User();
-        user.setName("Shishi");
+        user.setName("XiaoDuan");
         user.setAge(24);
-        user.setEmail("Shishi@163.com");
+        user.setEmail("XiaoDuan@163.com");
         int insert = userMapper.insert(user);
         System.out.println("insert: " + insert);
 
@@ -95,7 +95,32 @@ class MyBatisPlusDemoApplicationTests {
 
         System.out.println(page.hasNext()); // 是否有下一页
         System.out.println(page.hasPrevious()); // 是否有上一页
-
-
     }
+
+    // 删除操作：物理删除
+    @Test
+    void testDeleteById(){
+        int result = userMapper.deleteById(1533995206691545089L);
+        System.out.println(result);
+    }
+
+    // 删除操作：批量删除
+    @Test
+    void testDeleteBatchIds(){
+        int result = userMapper.deleteBatchIds(Arrays.asList(1, 2));
+        System.out.println(result);
+    }
+
+    // 删除操作：条件删除
+    @Test
+    void testDeleteByMap(){
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("name", "Tom");
+        map.put("age", 28);
+        int result = userMapper.deleteByMap(map);
+        System.out.println(result);
+    }
+
+    // 删除操作：逻辑删除
+
 }
